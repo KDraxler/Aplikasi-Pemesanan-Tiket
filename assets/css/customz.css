@@ -1,0 +1,13 @@
+
+.modal-backdrop.in {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+.jsgrid-grid-header {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    .jsgrid-grid-body {
+        overflow-x: auto;
+        overflow-y: auto;
+}
