@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2018 at 12:09 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Oct 18, 2020 at 04:11 PM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -90,7 +88,7 @@ INSERT INTO `eventname` (`id`, `name`, `description`, `pict`) VALUES
 (1, 'Paramore After Laughter Tour', 'wawwwwwwwwaw', 'After_Laughter_Tour_Poster.jpg'),
 (8, 'Purpose Tour', 'kakaaaakaaaaa', 'JustinBieber-500x5001.jpg'),
 (9, 'Dangerous Woman Tour', 'kakikiki', 'Dangerous_Woman_Tour.png'),
-(10, 'The EXO\'rDIUM', 'kakuuuuu', 'Z_converted_converted-1466207755.jpg'),
+(10, 'The EXO''rDIUM', 'kakuuuuu', 'Z_converted_converted-1466207755.jpg'),
 (15, 'Revival Tour Concert Tour', 'kak', 'Selena_Gomez_-_Revival_Tour_poster.png'),
 (16, 'Reputation Album Tour', 'yuhuyy', 'Taylor_Swifts_Reputation_Stadium_tour.png'),
 (17, 'Lala Land', 'yaaaa', 'my-account-login-icon1.png'),
@@ -134,7 +132,9 @@ INSERT INTO `eventprice` (`idPrice`, `schedule_id`, `seat_id`, `remainTicket`, `
 (17, 13, 1, 20, 20, 100000),
 (18, 13, 2, 40, 40, 150000),
 (19, 13, 8, 100, 100, 200000),
-(20, 16, 17, 179, 200, 100000);
+(20, 16, 17, 177, 200, 100000),
+(21, 17, 15, 0, 0, 800000),
+(22, 17, 16, 0, 0, 500000);
 
 -- --------------------------------------------------------
 
@@ -172,7 +172,8 @@ INSERT INTO `eventschedule` (`idSchedule`, `event_id`, `cat_id`, `artist_id`, `v
 (13, 9, 1, 1, 1, '2018-10-27', '07:00:00', '10:00:00'),
 (14, 9, 1, 1, 11, '2018-10-30', '23:00:00', '03:00:00'),
 (15, 17, 1, 2, 2, '2018-07-27', '20:00:00', '23:00:00'),
-(16, 18, 2, 8, 12, '2018-12-01', '01:00:00', '05:00:00');
+(16, 18, 2, 8, 12, '2018-12-10', '01:00:00', '05:00:00'),
+(17, 1, 1, 4, 7, '2019-01-17', '19:00:00', '22:00:00');
 
 -- --------------------------------------------------------
 
@@ -259,6 +260,8 @@ CREATE TABLE `invoice` (
 INSERT INTO `invoice` (`invoice`, `gambar`, `idOrder`) VALUES
 ('INV/021118/028', 'default', 28),
 ('INV/021118/033', NULL, 33),
+('INV/061218/035', 'gd.jpg', 35),
+('INV/251118/034', NULL, 34),
 ('INV011118027', 'default', 27),
 ('INV026', 'default', 26);
 
@@ -279,37 +282,6 @@ CREATE TABLE `order` (
   `statusNotif` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `order`
---
-
-INSERT INTO `order` (`idOrder`, `user_id`, `schedule_id`, `quantity`, `totalPrice`, `status`, `creditCard`, `statusNotif`) VALUES
-(9, 10, 8, 4, 6590000, 'Confirmed', '84038023850203', 1),
-(10, 11, 13, 1, 400000, 'Confirmed', '240324032890', 1),
-(11, 10, 11, 2, 300000, 'Confirmed', '345678765', 1),
-(12, 13, 13, 3, 600000, 'Confirmed', '28949837432', 1),
-(13, 10, 13, 1, 400000, 'Confirmed', '848346832', 1),
-(14, 13, 13, 2, 300000, 'Confirmed', '21233214343', 0),
-(15, 10, 13, 1, 200000, 'Confirmed', '84038023850203', 1),
-(16, 10, 14, 3, 450000, 'pending', '', 0),
-(17, 10, 14, 2, 300000, 'pending', '', 0),
-(18, 10, 14, 2, 300000, 'pending', '', 0),
-(19, 10, 16, 2, 200000, 'pending', '', 0),
-(20, 10, 16, 5, 500000, 'pending', '', 0),
-(21, 10, 16, 3, 300000, 'pending', '', 0),
-(22, 10, 16, 1, 100000, 'pending', '', 0),
-(23, 10, 16, 2, 200000, 'pending', '', 0),
-(24, 10, 16, 2, 200000, 'pending', '', 0),
-(25, 10, 16, 1, 100000, 'pending', '', 0),
-(26, 10, 16, 3, 300000, 'Confirmed', '', 0),
-(27, 10, 16, 1, 100000, 'pending', '', 0),
-(28, 10, 16, 1, 100000, 'pending', '', 0),
-(29, 10, 16, 2, 200000, 'pending', '', 0),
-(30, 10, 16, 2, 200000, 'pending', '', 0),
-(31, 10, 16, 2, 200000, 'pending', '', 0),
-(32, 10, 16, 2, 200000, 'pending', '', 0),
-(33, 10, 16, 2, 200000, 'pending', '', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -322,54 +294,6 @@ CREATE TABLE `order_detail` (
   `codeTicket` varchar(255) NOT NULL,
   `barcodePic` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `order_detail`
---
-
-INSERT INTO `order_detail` (`idDetail`, `order_code`, `codeTicket`, `barcodePic`) VALUES
-(27, 9, 'OD000027', 'OD000027.jpg'),
-(28, 9, 'OD000028', 'OD000028.jpg'),
-(29, 9, 'OD000029', 'OD000029.jpg'),
-(30, 9, 'OD000030', 'OD000030.jpg'),
-(31, 10, 'OD000031', 'OD000031.jpg'),
-(32, 11, 'OD000032', 'OD000032.jpg'),
-(33, 11, 'OD000033', 'OD000033.jpg'),
-(34, 12, 'OD000034', 'OD000034.jpg'),
-(35, 12, 'OD000035', 'OD000035.jpg'),
-(36, 12, 'OD000036', 'OD000036.jpg'),
-(37, 13, 'OD000037', 'OD000037.jpg'),
-(38, 14, 'OD000038', 'OD000038.jpg'),
-(39, 14, 'OD000039', 'OD000039.jpg'),
-(40, 15, 'OD000040', 'OD000040.jpg'),
-(41, 16, 'OD000041', 'OD000041.jpg'),
-(42, 16, 'OD000042', 'OD000042.jpg'),
-(43, 16, 'OD000043', 'OD000043.jpg'),
-(44, 17, 'OD000044', 'OD000044.jpg'),
-(45, 17, 'OD000045', 'OD000045.jpg'),
-(46, 18, 'OD000046', 'OD000046.jpg'),
-(47, 18, 'OD000047', 'OD000047.jpg'),
-(48, 22, 'OD000048', 'OD000048.jpg'),
-(49, 23, 'OD000049', 'OD000049.jpg'),
-(50, 23, 'OD000050', 'OD000050.jpg'),
-(51, 24, 'OD000051', 'OD000051.jpg'),
-(52, 24, 'OD000052', 'OD000052.jpg'),
-(53, 25, 'OD000053', 'OD000053.jpg'),
-(54, 26, 'OD000054', 'OD000054.jpg'),
-(55, 26, 'OD000055', 'OD000055.jpg'),
-(56, 26, 'OD000056', 'OD000056.jpg'),
-(57, 27, 'OD000057', 'OD000057.jpg'),
-(58, 28, 'OD000058', 'OD000058.jpg'),
-(59, 29, 'OD000059', 'OD000059.jpg'),
-(60, 29, 'OD000060', 'OD000060.jpg'),
-(61, 30, 'OD000061', 'OD000061.jpg'),
-(62, 30, 'OD000062', 'OD000062.jpg'),
-(63, 31, 'OD000063', 'OD000063.jpg'),
-(64, 31, 'OD000064', 'OD000064.jpg'),
-(65, 32, 'OD000065', 'OD000065.jpg'),
-(66, 32, 'OD000066', 'OD000066.jpg'),
-(67, 33, 'OD000067', 'OD000067.jpg'),
-(68, 33, 'OD000068', 'OD000068.jpg');
 
 -- --------------------------------------------------------
 
@@ -395,10 +319,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `name`, `address`, `phoneNumber`, `email`, `username`, `password`, `level`, `pictureUser`, `statusNotif`) VALUES
-(10, 'yudha', 'malang', '008766867', 'yudhapradana102@gmail.com', 'yudha', '2b9633304de305ed5c03fe19b7a06afe', 'superadmin', 'default.png', 0),
-(11, 'arif', 'malang', 'malang', 'yudhapradana@gmail.com', 'ariff', '2b499c9be188aedf561ef5699ddfd597', 'user', 'default.png', 1),
-(12, 'yusuf', 'malang', '08123232312', 'yudhapradana102@gmail.com', 'yusuf', 'dd2eb170076a5dec97cdbbbbff9a4405', 'admin', 'default.png', 1),
-(13, 'arif', 'malang', '048034034', 'arif@gmail.com', 'arif', '0ff6c3ace16359e41e37d40b8301d67f', 'user', 'default.png', 1);
+(17, 'a', 'a', '0', 'a@a.a', 'a', '0cc175b9c0f1b6a831c399e269772661', 'superadmin', 'default.png', 0),
+(18, 'Ariefad', 'Jl. Bandung', '080977745', 'ariefad@tiket.com', 'Ariefad', 'b21ffd3f5c8c9131de59d2545c3c6117', 'admin', 'default.png', 1),
+(20, 'Ariefus', 'Jl. Bandung', '080977756', 'ariefus@tiket.com', 'Ariefus', 'b83d05ffcdfe2694272bcc9947a13980', 'user', 'default.png', 1);
 
 --
 -- Indexes for dumped tables
@@ -490,61 +413,51 @@ ALTER TABLE `user`
 --
 ALTER TABLE `artist`
   MODIFY `idArtist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `eventcategory`
 --
 ALTER TABLE `eventcategory`
   MODIFY `idCat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `eventname`
 --
 ALTER TABLE `eventname`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `eventprice`
 --
 ALTER TABLE `eventprice`
-  MODIFY `idPrice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `idPrice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `eventschedule`
 --
 ALTER TABLE `eventschedule`
-  MODIFY `idSchedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
+  MODIFY `idSchedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `eventseat`
 --
 ALTER TABLE `eventseat`
   MODIFY `idSeat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `eventvenue`
 --
 ALTER TABLE `eventvenue`
   MODIFY `idVenue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
+  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `idDetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
+  MODIFY `idDetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --
@@ -583,7 +496,6 @@ ALTER TABLE `order`
 --
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `fk_orderCode` FOREIGN KEY (`order_code`) REFERENCES `order` (`idOrder`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
