@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2020 at 04:11 PM
+-- Generation Time: Feb 18, 2021 at 03:18 PM
 -- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -173,7 +173,8 @@ INSERT INTO `eventschedule` (`idSchedule`, `event_id`, `cat_id`, `artist_id`, `v
 (14, 9, 1, 1, 11, '2018-10-30', '23:00:00', '03:00:00'),
 (15, 17, 1, 2, 2, '2018-07-27', '20:00:00', '23:00:00'),
 (16, 18, 2, 8, 12, '2018-12-10', '01:00:00', '05:00:00'),
-(17, 1, 1, 4, 7, '2019-01-17', '19:00:00', '22:00:00');
+(17, 1, 1, 4, 7, '2019-01-17', '19:00:00', '22:00:00'),
+(18, 1, 1, 4, 12, '2021-02-19', '09:09:00', '21:10:00');
 
 -- --------------------------------------------------------
 
@@ -432,7 +433,7 @@ ALTER TABLE `eventprice`
 -- AUTO_INCREMENT for table `eventschedule`
 --
 ALTER TABLE `eventschedule`
-  MODIFY `idSchedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idSchedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `eventseat`
 --
@@ -447,12 +448,12 @@ ALTER TABLE `eventvenue`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `idDetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `idDetail` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
